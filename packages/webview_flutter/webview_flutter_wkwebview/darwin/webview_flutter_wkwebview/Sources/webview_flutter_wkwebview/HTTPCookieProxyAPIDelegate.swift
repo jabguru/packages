@@ -14,7 +14,7 @@ class HTTPCookieProxyAPIDelegate: PigeonApiDelegateHTTPCookie {
   ) throws -> HTTPCookie {
     let registrar = pigeonApi.pigeonRegistrar as! ProxyAPIRegistrar
 
-    let keyValueTuples = try! properties.map<[(HTTPCookiePropertyKey, Any)], PigeonError> {
+    let keyValueTuples: [(HTTPCookiePropertyKey, Any)] = try properties.map {
       key, value in
 
       let newKey: HTTPCookiePropertyKey
@@ -63,7 +63,7 @@ class HTTPCookieProxyAPIDelegate: PigeonApiDelegateHTTPCookie {
       return (newKey, value)
     }
 
-    let nativeProperties = Dictionary(uniqueKeysWithValues: keyValueTuples)
+    let nativeProperties: [HTTPCookiePropertyKey: Any] = Dictionary(uniqueKeysWithValues: keyValueTuples)
     let cookie = HTTPCookie(properties: nativeProperties)
     if let cookie = cookie {
       return cookie
