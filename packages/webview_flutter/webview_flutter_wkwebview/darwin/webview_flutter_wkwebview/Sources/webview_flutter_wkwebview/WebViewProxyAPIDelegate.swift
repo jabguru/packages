@@ -348,7 +348,6 @@ class WebViewProxyAPIDelegate: PigeonApiDelegateWKWebView, PigeonApiDelegateUIVi
     pigeonApi: PigeonApiUIViewWKWebView, pigeonInstance: WKWebView, inspectable: Bool
   ) throws {
     if #available(iOS 16.4, macOS 13.3, *) {
-      pigeonInstance.isInspectable = inspectable
       if pigeonInstance.responds(to: Selector(("isInspectable:"))) {
         pigeonInstance.perform(Selector(("isInspectable:")), with: inspectable)
       }
