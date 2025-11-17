@@ -81,7 +81,7 @@ public final class LocalAuthPlugin: NSObject, FlutterPlugin, LocalAuthApi, @unch
         policy,
         localizedReason: strings.reason
       ) { [weak self] (success: Bool, error: Error?) in
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
           self?.handleAuthReply(
             success: success,
             error: error,
